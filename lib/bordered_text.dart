@@ -19,13 +19,12 @@ import 'package:flutter/widgets.dart';
 /// ```
 class BorderedText extends StatelessWidget {
   BorderedText({
-    @required this.child,
+    required this.child,
     this.strokeCap = StrokeCap.round,
     this.strokeJoin = StrokeJoin.round,
     this.strokeWidth = 6.0,
     this.strokeColor = const Color.fromRGBO(53, 0, 71, 1),
-  })  : assert(child != null),
-        assert(child is Text);
+  })  : assert(child is Text);
 
   /// the stroke cap style
   final StrokeCap strokeCap;
@@ -46,7 +45,7 @@ class BorderedText extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle style;
     if (child.style != null) {
-      style = child.style.copyWith(
+      style = child.style!.copyWith(
         foreground: Paint()
           ..style = PaintingStyle.stroke
           ..strokeCap = strokeCap
@@ -70,7 +69,7 @@ class BorderedText extends StatelessWidget {
       textDirection: child.textDirection,
       children: <Widget>[
         Text(
-          child.data,
+          child.data ?? '',
           style: style,
           maxLines: child.maxLines,
           overflow: child.overflow,
